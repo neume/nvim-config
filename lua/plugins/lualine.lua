@@ -1,6 +1,6 @@
 require('lualine').setup {
   options = {
-    theme = 'gruvbox',
+    theme = 'vscode',
     icons_enabled = true,
     component_separators = {'', ''},
     section_separators = {'', ''},

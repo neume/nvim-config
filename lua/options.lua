@@ -37,4 +37,6 @@ opt.laststatus = 3
 -- sets nowrap
 opt.wrap = false
 
+-- sets termguicolors
+opt.termguicolors = true
 

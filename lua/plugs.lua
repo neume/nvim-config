@@ -19,8 +19,55 @@ return require('packer').startup(function(use)
   use 'tpope/vim-commentary'
   use 'dyng/ctrlsf.vim'
   use 'itmammoth/run-rspec.vim'
+
+  -- color-schemes
   use 'morhetz/gruvbox'
   use 'rose-pine/neovim'
+  use 'Mofiqul/dracula.nvim'
+  use 'shaunsingh/nord.nvim'
+  use 'folke/tokyonight.nvim'
+  use {
+    "catppuccin/nvim",
+    as = "catppuccin",
+    config = function()
+      require("catppuccin").setup({
+        flavour = "macchiato", -- latte, frappe, macchiato, mocha
+      })
+    end
+  }
+  use {
+    'Mofiqul/vscode.nvim',
+    config = function()
+      local c = require('vscode.colors').get_colors()
+      require('vscode').setup({
+        -- Alternatively set style in setup
+        -- style = 'light'
+
+        -- Enable transparent background
+        transparent = true,
+
+        -- Enable italic comment
+        italic_comments = true,
+
+        -- Disable nvim-tree background color
+        disable_nvimtree_bg = true,
+
+        -- Override colors (see ./lua/vscode/colors.lua)
+        color_overrides = {
+          vscLineNumber = '#FFFFFF',
+        },
+
+        -- Override highlight groups (see ./lua/vscode/theme.lua)
+        group_overrides = {
+          -- this supports the same val table as vim.api.nvim_set_hl
+          -- use colors from this colorscheme by requiring vscode.colors!
+          Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
+        }
+      })
+      require('vscode').load()
+    end
+  }
+
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
     requires = { {'nvim-lua/plenary.nvim'} }
@@ -88,4 +135,29 @@ return require('packer').startup(function(use)
       })
     end
   }
+  use({
+    "andythigpen/nvim-coverage",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("coverage").setup({
+
+        commands = true, -- create commands
+        highlights = {
+          covered = { fg = "#C3E88D" },   -- supports style, fg, bg, sp (see :h highlight-gui)
+          uncovered = { fg = "#F07178" },
+        },
+        summary = {
+          min_coverage = 80.0,
+        },
+        lang = {
+        },
+        -- auto_reload = true,
+        auto_reload_timeout_ms = 500,
+        load_coverage_cb = function (ftype)
+          vim.g.coverage_loaded = 1
+          vim.notify("Loaded + Cleared  " .. ftype .. " coverage")
+        end,
+      })
+    end,
+  })
 end)
