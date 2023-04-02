@@ -82,3 +82,8 @@ vim.keymap.set("n", "<leader>ci", ":Coverage<CR>", {noremap = true})
 vim.keymap.set("n", "<leader>cs", ":CoverageSummary<CR>", {noremap = true})
 vim.keymap.set("n", "<leader>ct", ":CoverageToggle<CR>", {noremap = true})
 vim.keymap.set("n", "<leader>cv", ":CoverageView<CR>", {noremap = true})
+
+
+-- Gitsigns mappings
+vim.keymap.set("n", "<leader>glb", ":Gitsign toggle_current_line_blame<CR>", {noremap = true})
+vim.keymap.set("n", "<leader>gll", ":Gitsign blame_line<CR>", {noremap = true})

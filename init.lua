@@ -8,6 +8,7 @@ require('plugins/treesitter-tailwind')
 require('plugins/nerdtree')
 require('plugins/nvim-coverage')
 require('plugins/cmp')
+require('plugins/gitsigns')
 
 require('remap')
 
